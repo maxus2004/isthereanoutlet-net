@@ -89,6 +89,10 @@ async function placeNewPoint(map: Map, coords: L.LatLng) {
         photo: newPoint.photo,
         description: newPoint.description
     }))
+    let star_count = Number(localStorage.getItem("star_count"));
+    if (star_count == null) star_count = 0;
+    star_count += 10;
+    localStorage.setItem("star_count", String(star_count));
 }
 
 function setLocationDetected(value: boolean): void { // Did this for shits and giggles tbh
@@ -193,7 +197,7 @@ export default function MapDisplay() {
                     })
                     if (res.ok) {
                         marker.bindPopup(`
-                        <div class='font-montserrat min-w-[300px] text-green-600 text-xl text-center'>Point has been added</div>
+                        <div class='font-montserrat min-w-[300px] text-green-600 text-xl text-center'>Point has been added, your earned 10⭐ stars!</div>
                     `).on('popupclose', () => {
                             placeNewPoint(map, coords.latlng);
                         });
