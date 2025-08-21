@@ -76,10 +76,6 @@ async function populateMap(leafletMap: Map) {
 }
 
 async function placeNewPoint(map: Map, coords: L.LatLng) {
-    let star_count = Number(localStorage.getItem("star_count"));
-    if (star_count == null) star_count = 0;
-    star_count += 10;
-    localStorage.setItem("star_count", String(star_count));
     const latlngAsString = '[' + coords.lat.toFixed(6).toString() + ', ' + coords.lng.toFixed(6).toString() + ']';
     const req = await fetch('/api/get-point?coordinates=' + encodeURIComponent(latlngAsString), {
         method: 'GET',
@@ -196,6 +192,10 @@ export default function MapDisplay() {
                         body: JSON.stringify(jsonData),
                     })
                     if (res.ok) {
+                        let star_count = Number(localStorage.getItem("star_count"));
+                        if (star_count == null) star_count = 0;
+                        star_count += 10;
+                        localStorage.setItem("star_count", String(star_count));
                         marker.bindPopup(`
                         <div class='font-montserrat min-w-[300px] text-green-600 text-xl text-center'>Point has been added, your earned 10⭐ stars!</div>
                     `).on('popupclose', () => {
