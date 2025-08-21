@@ -55,8 +55,6 @@ export default function BurgerMenu() {
             <div className="flex h-full flex-col ">
                 <div className="mb-4 w-full"><a href="/">Main Map</a></div>
                 <div className="mb-4 w-full"><a href="/profile">Profile</a></div>
-                <div className="mb-4 w-full"><a href="/piss">Color Theme</a></div>
-                <div className="absolute bottom-21"><a href="/bug" className="mb-4 w-full">Report Bug</a></div>
                 <div className="absolute bottom-12"><a href="/credits">Credits</a></div>
             </div>
         </Menu>
