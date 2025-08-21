@@ -76,6 +76,10 @@ async function populateMap(leafletMap: Map) {
 }
 
 async function placeNewPoint(map: Map, coords: L.LatLng) {
+    let star_count = Number(localStorage.getItem("star_count"));
+    if (star_count == null) star_count = 0;
+    star_count += 10;
+    localStorage.setItem("star_count", String(star_count));
     const latlngAsString = '[' + coords.lat.toFixed(6).toString() + ', ' + coords.lng.toFixed(6).toString() + ']';
     const req = await fetch('/api/get-point?coordinates=' + encodeURIComponent(latlngAsString), {
         method: 'GET',
@@ -89,10 +93,6 @@ async function placeNewPoint(map: Map, coords: L.LatLng) {
         photo: newPoint.photo,
         description: newPoint.description
     }))
-    let star_count = Number(localStorage.getItem("star_count"));
-    if (star_count == null) star_count = 0;
-    star_count += 10;
-    localStorage.setItem("star_count", String(star_count));
 }
 
 function setLocationDetected(value: boolean): void { // Did this for shits and giggles tbh
