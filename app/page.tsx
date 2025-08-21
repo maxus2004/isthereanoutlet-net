@@ -11,13 +11,13 @@ export default function Home() {
         bridge.send('VKWebAppInit')
         .then((data) => { 
             if (data.result) {
-            // Приложение инициализировано
+            alert("init")
             } else {
-            // Ошибка
+            alert("not init")
             }
         })
         .catch((error) => {
-            // Ошибка
+            alert("error")
             console.log(error);
         });
     }, []);
