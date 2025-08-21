@@ -8,6 +8,7 @@ const MapDisplay = dynamic(() => import("./components/Map"), { ssr: false });
 
 export default function Home() {
     useEffect(() => {
+        alert("starting")
         bridge.send('VKWebAppInit')
         .then((data) => { 
             if (data.result) {
